@@ -192,4 +192,20 @@ mod tests {
         });
         assert_eq!(resulted, expeted);
     }
+
+    #[test]
+    fn test_no_scheme() {
+        let url = "example.com".to_string();
+        let resulted = Url::new(url.clone()).parse();
+        let expeted = Err("http:// から始まるURLを指定してください".to_string());
+        assert_eq!(resulted, expeted);
+    }
+
+    #[test]
+    fn test_unsupported_scheme() {
+        let url = "ftp://example.com".to_string();
+        let resulted = Url::new(url.clone()).parse();
+        let expeted = Err("http:// から始まるURLを指定してください".to_string());
+        assert_eq!(resulted, expeted);
+    }
 }
