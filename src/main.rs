@@ -8,8 +8,8 @@ use net_wasabi::http::HttpClient;
 use noli::prelude::*;
 
 fn main() -> u64 {
-    let client = HttpClient::new();
-    match client.get("host.test".to_string(), 8000, "/test.html".to_string()) {
+    let client: HttpClient = HttpClient::new();
+    match client.get("host.test".to_string(), 8000, "test.html".to_string()) {
         Ok(response) => {
             print!("Response: \n{:#?}", response);
         }
@@ -17,7 +17,7 @@ fn main() -> u64 {
             print!("Error: \n{:#?}", e);
         }
     }
-    return 0;
+    0
 }
 
 entry_point!(main);

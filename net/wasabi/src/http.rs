@@ -40,7 +40,7 @@ impl HttpClient {
         };
 
         // リクエストラインを構築
-        let mut request = format!("Get /{} HTTP/1.1\n", &path);
+        let mut request = format!("GET /{} HTTP/1.1\n", &path);
 
         // ヘッダーを構築
         let header = format!("Host: {}\nAccept: text/html\nConnection: close\n\n", &host);
