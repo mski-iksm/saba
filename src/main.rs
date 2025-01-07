@@ -1,10 +1,23 @@
 #![no_std]
-#![cfg_attr(not(target_os = "linux"), no_main)]
+#![no_main]
 
+extern crate alloc;
+
+use alloc::string::{String, ToString};
+use net_wasabi::http::HttpClient;
 use noli::prelude::*;
 
-fn main() {
-    println!("Hello, world!");
+fn main() -> u64 {
+    let client: HttpClient = HttpClient::new();
+    match client.get("host.test".to_string(), 8000, "test.html".to_string()) {
+        Ok(response) => {
+            print!("Response: \n{:#?}", response);
+        }
+        Err(e) => {
+            print!("Error: \n{:#?}", e);
+        }
+    }
+    0
 }
 
 entry_point!(main);
